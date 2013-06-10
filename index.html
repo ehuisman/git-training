@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Git-pikakoulutus</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=792, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+  <!--
+    To apply styles to the certain slides
+    set slide ID to get needed elements
+    -->
+  <style>
+    #Cover h2 {
+      margin:30px 0 0;
+      color:#FFF;
+      text-align:center;
+      font-size:70px;
+    }
+    #Cover p {
+      margin:10px 0 0;
+      text-align:center;
+      color:#FFF;
+      font-style:italic;
+      font-size:20px;
+    }
+      #Cover p a {
+        color:#FFF;
+      }
+    .picture h2, .picture li {
+      color:#FFF;
+    }
+    .small {
+      font-size: 20%;
+    }
+  </style>
+</head>
+<body class="list">
+  <header class="caption">
+    <h1>Git-pikakoulutus</h1>
+    <p>Eetu Huisman &lt;eetu.huisman@siili.fi&gt;</p>
+  </header>
+  <section class="slide cover" id="Cover"><div>
+    <h2>Git-pikakoulutus</h2>
+    <p>20.5.2013</p>
+    <img src="pictures/background.jpg" alt="background"/>
+  </div></section>
+  <section class="slide" class="caption"><div>
+    <h2>Mikä Git on?</h2>
+    <ul>
+      <li class="next">Versionhallintatyökalu?</li>
+      <li class="next">Sisällönhallintatyökalu?</li>
+      <li class="next">Kirjaapitävä tiedostojärjestelmä ihmisille?</li>
+    <ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Ei "evoluution seuraava askel"</h2>
+    <ul>
+      <li class="next">SVN – "CVS Done Right"</li>
+      <li class="next">Git – "What Would CVS Not Do?"</li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Hajautettu</h2>
+    <ul>
+      <li>Jokainen kopio on tasavertainen
+        <ul><li class="next">Mutta jotkut ovat tasavertaisempia kuin toiset</li></ul>
+      </li>
+      <li class="next"><span class="small">(Lähes)</span> Kaikki operaatiot ovat paikallisia</li>
+      <li class="next">Käytetään silti usein "perinteiseen" tapaan</li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>CVS/SVN</h2>
+    <img src="pictures/svn-deltas.png" alt="deltas"/>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Git</h2>
+    <img src="pictures/git-snapshots.png" alt="snapshots"/>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Jokainen versio</h2>
+    <ul>
+      <li>Täydellinen katsaus sen hetkisestä tilanteesta</li>
+      <li>Viittaukset edeltäjiin</li>
+      <li>Yksilöivä tunniste</li>
+    </ul>
+  </div></section>
+  <section class="slide cover picture"><div>
+    <h2>Käsitteitä (ja komentoja)</h2>
+    <img src="pictures/background.jpg" alt="local workflow"/>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Vaiheet ja tilat</h2>
+    <ol>
+      <li>Työhakemisto</li>
+      <li>Luettelo</li>
+      <li>Säilö</li>
+    </ol>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Työhakemisto (Working Directory)</h2>
+    <ul>
+      <li>Muutokset edellisen version jälkeen
+        <ol>
+          <li class="next">Ei-seuratut tiedostot <code class="next">status</code>
+            <ul>
+              <li class="next">Peruutus: poista tiedostot</li>
+            </ul>
+          </li>
+          <li class="next">Seuratut tiedostot <span class="next"><code>status</code>, <code>diff</code></span>
+            <ul>
+              <li class="next">Muutokset voi peruuttaa <code class="next">checkout -- [tiedosto(t)]</code></li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Luettelo (Staging (Area)/Index)</h2>
+    <ul>
+      <li class="next">Seuraavaan versioon valitut muutokset <span class="next"><code>add</code>, <code>rm</code></span></li>
+      <li class="next">Samassa tiedostossa voi olla sekä valittuja että muita muutoksia
+        <ul>
+          <li class="next"><code>status</code>, <code>diff --cached</code></li>
+          <li class="next"><code>add --patch</code></li>
+        </ul>
+      </li>
+      <li class="next">Valinnan voi peruuttaa <code class="next">reset HEAD</code></li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Säilö (Repository)</h2>
+    <ul>
+      <li class="next">Tehdyt muutokset <code class="next">commit</code></li>
+      <li class="next">Versiohistoria <code class="next">log</code></li>
+      <li class="next">Historiaa voi muokata<br/>
+        <span class="next"><code>rebase --interactive</code>, <code>commit --amend</code></span>
+      </li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Haarat (Branches)</h2>
+    <ul>
+      <li class="next">Jokainen kopio on jo oma haaransa</li>
+      <li class="next">Lähtökohtaisesti paikallisia</li>
+      <li class="next">Helppo ja halpa tapa hypätä tekemään jotain ihan muuta
+        <ol>
+          <li class="next"><code>branch</code></li>
+          <li class="next"><code>checkout</code></li>
+        </ol>
+        <ul>
+          <li class="next"><code>checkout -b</code></li>
+        </ul>
+      </li>
+      <li class="next">Lähtökohtaisesti paikallisia</li>
+      <li class="next">Käytännössä nimi ja osoitin tuoreimpaan versioon</li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Yhdistäminen (Merge)</h2>
+    <ul>
+      <li class="next">Haaroilla harvoin tarvetta pitkään ikään
+        <ol>
+          <li class="next"><code>checkout</code></li>
+          <li class="next"><code>merge</code></li>
+          <li class="next"><code>branch --delete</code></li>
+        </ol>
+      </li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Rusinat pullasta (Cherry pick)</h2>
+    <ul>
+      <li class="next">Yksittäisen muutoksen vieminen haarasta toiseen <code class="next">cherry-pick</code></li>
+      <li class="next">Ei pitäisi olla tarvetta usein</li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Kätkö (Stash)</h2>
+    <ul>
+      <li class="next">Väliaikainen paikka muutoksille, jotka haluat säästää myöhempää käyttöä varten <code class="next">stash</code></li>
+      <li class="next">Ei osa minkään haaran versiohistoriaa</li>
+      <li class="next">Helppo palauttaa <code class="next">stash pop</code></li>
+      <li class="next">Kätköön mahtuu loputtomasti tavaraa <code class="next">stash list</code></li>
+      <li class="next">Kätköstä voi myös tehdä haaran <code class="next">stash branch</code></li>
+    </ul>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Etäsäilöt (Remotes)</h2>
+    <ul>
+      <li class="next">Kun haluaa paikalliset muutokset muidenkin käyttöön
+        <ul>
+          <li class="next"><code>push</code></li>
+          <li class="next"><code>svn dcommit</code></li>
+        </ul>
+      </li>
+      <li class="next">Kun haluaa muiden muutokset paikalliseen säilöön
+        <ul>
+          <li class="next"><code>pull</code>/<code class="next">rebase</code></li>
+          <li class="next"><code>svn rebase</code></li>
+        </ul>
+      </li>
+      <li class="next">Voi olla useita</li>
+    </ul>
+  </div></section>
+  <section class="slide cover picture"><div>
+    <h2>Kata</h2>
+    <ul>
+      <li>Kotisivu: <a href="http://schauder.github.io/gitkata/" target="_blank">http://schauder.github.io/gitkata/</a></li>
+      <li>Säilö: <a href="https://github.com/schauder/gitkata.git"target="_blank">https://github.com/schauder/gitkata.git</a></li>
+    </ul>
+    <img src="pictures/background.jpg" alt="background"/>
+  </div></section>
+  <section class="slide"><div>
+    <h2>Linkkejä</h2>
+    <ul>
+      <li><a href="http://git-scm.com/" target="_blank">git-scm.com</a></li>
+      <li><a href="http://tom.preston-werner.com/2009/05/19/the-git-parable.html" target="_blank">The Git Parable</a></li>
+      <li><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html" target="_blank">A Note about Git Commit Messages</a></li>
+      <li><a href="http://www.youtube.com/watch?v=4XpnKHJAok8" target="_blank">Linus Torvalds puhuu Gitistä Googlella</a></li>
+    </ul>
+  </div></section>
+  <div class="progress"><div></div></div>
+  <script src="shower/shower.min.js"></script>
+  <!-- Copyright © 2013 Eetu Huisman, Siili Solutions Oyj -->
+</body>
+</html>
