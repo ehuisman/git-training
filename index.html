@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <title>Git-pikakoulutus</title>
+  <title>Git Training</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=792, user-scalable=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -37,37 +37,29 @@
 </head>
 <body class="list">
   <header class="caption">
-    <h1>Git-pikakoulutus</h1>
-    <p>Eetu Huisman &lt;eetu.huisman@siili.fi&gt;</p>
+    <h1>Git</h1>
   </header>
   <section class="slide cover" id="Cover"><div>
-    <h2>Git-pikakoulutus</h2>
-    <p>20.5.2013</p>
+    <h2>Git Training</h2>
+    <p>November 21st, 2014</p>
     <img src="pictures/background.jpg" alt="background"/>
   </div></section>
-  <section class="slide" class="caption"><div>
-    <h2>Mikä Git on?</h2>
-    <ul>
-      <li class="next">Versionhallintatyökalu?</li>
-      <li class="next">Sisällönhallintatyökalu?</li>
-      <li class="next">Kirjaapitävä tiedostojärjestelmä ihmisille?</li>
-    <ul>
-  </div></section>
   <section class="slide"><div>
-    <h2>Ei "evoluution seuraava askel"</h2>
+    <h2>Distributed</h2>
     <ul>
-      <li class="next">SVN – "CVS Done Right"</li>
-      <li class="next">Git – "What Would CVS Not Do?"</li>
+      <li>Each copy is equal
+        <ul><li class="next">...but some copies are more equal than others</li></ul>
+      </li>
+      <li class="next"><span class="small">(Almost)</span> All operations are local</li>
+      <li class="next">Server/client model still often used</li>
     </ul>
   </div></section>
   <section class="slide"><div>
-    <h2>Hajautettu</h2>
+    <h2>Each commit</h2>
     <ul>
-      <li>Jokainen kopio on tasavertainen
-        <ul><li class="next">Mutta jotkut ovat tasavertaisempia kuin toiset</li></ul>
-      </li>
-      <li class="next"><span class="small">(Lähes)</span> Kaikki operaatiot ovat paikallisia</li>
-      <li class="next">Käytetään silti usein "perinteiseen" tapaan</li>
+      <li>Full snapshot of the current content</li>
+      <li>Reference(s) to the previous commit(s)</li>
+      <li>Unique identifier</li>
     </ul>
   </div></section>
   <section class="slide"><div>
@@ -78,39 +70,31 @@
     <h2>Git</h2>
     <img src="pictures/git-snapshots.png" alt="snapshots"/>
   </div></section>
-  <section class="slide"><div>
-    <h2>Jokainen versio</h2>
-    <ul>
-      <li>Täydellinen katsaus sen hetkisestä tilanteesta</li>
-      <li>Viittaukset edeltäjiin</li>
-      <li>Yksilöivä tunniste</li>
-    </ul>
-  </div></section>
   <section class="slide cover picture"><div>
-    <h2>Käsitteitä (ja komentoja)</h2>
+    <h2>Concepts and commands</h2>
     <img src="pictures/background.jpg" alt="local workflow"/>
   </div></section>
   <section class="slide"><div>
-    <h2>Vaiheet ja tilat</h2>
+    <h2>Stages and states</h2>
     <ol>
-      <li>Työhakemisto</li>
-      <li>Luettelo</li>
-      <li>Säilö</li>
+      <li>Working directory</li>
+      <li>Index</li>
+      <li>Repository</li>
     </ol>
   </div></section>
   <section class="slide"><div>
-    <h2>Työhakemisto (Working Directory)</h2>
+    <h2>Working directory</h2>
     <ul>
-      <li>Muutokset edellisen version jälkeen
+      <li>Changes since the last commit
         <ol>
-          <li class="next">Ei-seuratut tiedostot <code class="next">status</code>
+          <li class="next">Untracked files <code class="next">status</code>
             <ul>
-              <li class="next">Peruutus: poista tiedostot</li>
+              <li class="next">To cancel: remove the files</li>
             </ul>
           </li>
-          <li class="next">Seuratut tiedostot <span class="next"><code>status</code>, <code>diff</code></span>
+          <li class="next">Tracked files <span class="next"><code>status</code>, <code>diff</code></span>
             <ul>
-              <li class="next">Muutokset voi peruuttaa <code class="next">checkout -- [tiedosto(t)]</code></li>
+              <li class="next">To cancel: <code class="next">checkout -- [file(s)]</code></li>
             </ul>
           </li>
         </ol>
@@ -118,34 +102,34 @@
     </ul>
   </div></section>
   <section class="slide"><div>
-    <h2>Luettelo (Staging (Area)/Index)</h2>
+    <h2>Index (or staging area)</h2>
     <ul>
-      <li class="next">Seuraavaan versioon valitut muutokset <span class="next"><code>add</code>, <code>rm</code></span></li>
-      <li class="next">Samassa tiedostossa voi olla sekä valittuja että muita muutoksia
+      <li class="next">Changes staged for the next commit <span class="next"><code>add</code>, <code>rm</code></span></li>
+      <li class="next">The same file can have both staged and non-staged changes
         <ul>
           <li class="next"><code>status</code>, <code>diff --cached</code></li>
           <li class="next"><code>add --patch</code></li>
         </ul>
       </li>
-      <li class="next">Valinnan voi peruuttaa <code class="next">reset HEAD</code></li>
+      <li class="next">To cancel staging: <code class="next">reset HEAD</code></li>
     </ul>
   </div></section>
   <section class="slide"><div>
-    <h2>Säilö (Repository)</h2>
+    <h2>Repository</h2>
     <ul>
-      <li class="next">Tehdyt muutokset <code class="next">commit</code></li>
-      <li class="next">Versiohistoria <code class="next">log</code></li>
-      <li class="next">Historiaa voi muokata<br/>
+      <li class="next">Committed changes <code class="next">commit</code></li>
+      <li class="next">Version history <code class="next">log</code></li>
+      <li class="next">History can be rewritten<br/>
         <span class="next"><code>rebase --interactive</code>, <code>commit --amend</code></span>
       </li>
     </ul>
   </div></section>
   <section class="slide"><div>
-    <h2>Haarat (Branches)</h2>
+    <h2>Branches</h2>
     <ul>
-      <li class="next">Jokainen kopio on jo oma haaransa</li>
-      <li class="next">Lähtökohtaisesti paikallisia</li>
-      <li class="next">Helppo ja halpa tapa hypätä tekemään jotain ihan muuta
+      <li class="next">Each copy is already a branch</li>
+      <li class="next">Local by default</li>
+      <li class="next">Easy way to jump between things
         <ol>
           <li class="next"><code>branch</code></li>
           <li class="next"><code>checkout</code></li>
@@ -154,14 +138,13 @@
           <li class="next"><code>checkout -b</code></li>
         </ul>
       </li>
-      <li class="next">Lähtökohtaisesti paikallisia</li>
-      <li class="next">Käytännössä nimi ja osoitin tuoreimpaan versioon</li>
+      <li class="next">In practice just a name and a reference to the latest included commit</li>
     </ul>
   </div></section>
   <section class="slide"><div>
-    <h2>Yhdistäminen (Merge)</h2>
+    <h2>Merge</h2>
     <ul>
-      <li class="next">Haaroilla harvoin tarvetta pitkään ikään
+      <li class="next">Branches rarely need to live long
         <ol>
           <li class="next"><code>checkout</code></li>
           <li class="next"><code>merge</code></li>
@@ -171,59 +154,56 @@
     </ul>
   </div></section>
   <section class="slide"><div>
-    <h2>Rusinat pullasta (Cherry pick)</h2>
+    <h2>Cherry pick</h2>
     <ul>
-      <li class="next">Yksittäisen muutoksen vieminen haarasta toiseen <code class="next">cherry-pick</code></li>
-      <li class="next">Ei pitäisi olla tarvetta usein</li>
+      <li class="next">To import individual commits from another branch <code class="next">cherry-pick</code></li>
+      <li class="next">Shouldn't be need to use often</li>
     </ul>
   </div></section>
   <section class="slide"><div>
-    <h2>Kätkö (Stash)</h2>
+    <h2>Stash</h2>
     <ul>
-      <li class="next">Väliaikainen paikka muutoksille, jotka haluat säästää myöhempää käyttöä varten <code class="next">stash</code></li>
-      <li class="next">Ei osa minkään haaran versiohistoriaa</li>
-      <li class="next">Helppo palauttaa <code class="next">stash pop</code></li>
-      <li class="next">Kätköön mahtuu loputtomasti tavaraa <code class="next">stash list</code></li>
-      <li class="next">Kätköstä voi myös tehdä haaran <code class="next">stash branch</code></li>
+      <li class="next">A temporary storage for changes which you want to store to use them later <code class="next">stash</code></li>
+      <li class="next">Not part of any branch's history</li>
+      <li class="next">Easy to bring back <code class="next">stash pop</code></li>
+      <li class="next">Not just one change <code class="next">stash list</code></li>
+      <li class="next">A branch can be created from the changes in stash <code class="next">stash branch</code></li>
     </ul>
   </div></section>
   <section class="slide"><div>
-    <h2>Etäsäilöt (Remotes)</h2>
+    <h2>Remotes</h2>
     <ul>
-      <li class="next">Kun haluaa paikalliset muutokset muidenkin käyttöön
+      <li class="next">When you want to share your changes with others
         <ul>
           <li class="next"><code>push</code></li>
-          <li class="next"><code>svn dcommit</code></li>
         </ul>
       </li>
-      <li class="next">Kun haluaa muiden muutokset paikalliseen säilöön
+      <li class="next">When you want to get others' changes to your repository
         <ul>
           <li class="next"><code>pull</code>/<code class="next">rebase</code></li>
-          <li class="next"><code>svn rebase</code></li>
         </ul>
       </li>
-      <li class="next">Voi olla useita</li>
+      <li class="next">You can have multiple remotes</li>
     </ul>
   </div></section>
   <section class="slide cover picture"><div>
     <h2>Kata</h2>
     <ul>
-      <li>Kotisivu: <a href="http://schauder.github.io/gitkata/" target="_blank">http://schauder.github.io/gitkata/</a></li>
-      <li>Säilö: <a href="https://github.com/schauder/gitkata.git"target="_blank">https://github.com/schauder/gitkata.git</a></li>
+      <li>Home page: <a href="http://schauder.github.io/gitkata/" target="_blank">http://schauder.github.io/gitkata/</a></li>
+      <li>Repository: <a href="https://github.com/schauder/gitkata.git"target="_blank">https://github.com/schauder/gitkata.git</a></li>
     </ul>
     <img src="pictures/background.jpg" alt="background"/>
   </div></section>
   <section class="slide"><div>
-    <h2>Linkkejä</h2>
+    <h2>Links</h2>
     <ul>
       <li><a href="http://git-scm.com/" target="_blank">git-scm.com</a></li>
       <li><a href="http://tom.preston-werner.com/2009/05/19/the-git-parable.html" target="_blank">The Git Parable</a></li>
       <li><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html" target="_blank">A Note about Git Commit Messages</a></li>
-      <li><a href="http://www.youtube.com/watch?v=4XpnKHJAok8" target="_blank">Linus Torvalds puhuu Gitistä Googlella</a></li>
+      <li><a href="http://www.youtube.com/watch?v=4XpnKHJAok8" target="_blank">Linus Torvalds speaks about Git at Google</a></li>
     </ul>
   </div></section>
   <div class="progress"><div></div></div>
   <script src="shower/shower.min.js"></script>
-  <!-- Copyright © 2013 Eetu Huisman, Siili Solutions Oyj -->
 </body>
 </html>
